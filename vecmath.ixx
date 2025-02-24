@@ -1,8 +1,9 @@
 module;
 
 #include <math.h>
+#include <iostream>
 
-export module math;
+export module vecmath;
 
 export class Vec3 {
 
@@ -27,8 +28,8 @@ export class Vec3 {
         inline Vec3& operator*=(const Vec3& v2);
         inline Vec3& operator/=(const Vec3& v2);
 
-        inline Vec3 operator*=(const float t);
-        inline Vec3 operator/=(const float t);
+        inline Vec3& operator*=(const float t);
+        Vec3& operator/=(const float t);
 
         inline float length() const {
             return sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]);

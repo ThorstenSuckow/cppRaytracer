@@ -33,7 +33,7 @@ int main() {
 
 
     Vec3 v1 = Vec3(3, 3, 3);
-    v1 /= 3.0f;
+    v1 *= 3.0f;
 
     cout << v1.x() << v1.y() << v1.z();
 

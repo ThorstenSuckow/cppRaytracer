@@ -11,6 +11,8 @@ export class Vec3 {
         Vec3();
         Vec3(float e0, float e1, float e2);
 
+        static Vec3 unitVector(const Vec3& v2);
+
         inline float x() const { return e[0]; };
         inline float y() const { return e[1]; };
         inline float z() const { return e[2]; };
@@ -23,12 +25,13 @@ export class Vec3 {
         inline float operator[](int i) const { return e[i]; };
         inline float& operator[](int i) { return e[i]; };
 
+        
         inline Vec3& operator+=(const Vec3& v2);
         inline Vec3& operator-=(const Vec3& v2);
         inline Vec3& operator*=(const Vec3& v2);
         inline Vec3& operator/=(const Vec3& v2);
 
-        inline Vec3& operator*=(const float t);
+        Vec3& operator*=(const float t);
         Vec3& operator/=(const float t);
 
         inline float length() const {
@@ -39,8 +42,14 @@ export class Vec3 {
             return e[0] * e[0] + e[1] * e[1] + e[2] * e[2];
         }
 
-        inline void makeUnitVector();
+        inline void makeUnitVector() {
+            float len = 1/length();
+            e[0] *= len;
+            e[1] *= len;
+            e[2] *= len;
+        }
 
+        
     private:
         float e[3];
 };

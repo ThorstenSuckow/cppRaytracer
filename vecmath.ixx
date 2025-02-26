@@ -1,7 +1,7 @@
 module;
 
-#include <math.h>
-#include <iostream>
+import <istream>;
+import <ostream>;
 
 export module vecmath;
 
@@ -12,6 +12,12 @@ export class Vec3 {
         Vec3(float e0, float e1, float e2);
 
         static Vec3 unitVector(const Vec3& v2);
+        
+      
+        inline void x(float x) { e[0] = x; };
+        inline void y(float y) { e[1] = y; };
+        inline void z(float z) { e[2] = z; };
+
 
         inline float x() const { return e[0]; };
         inline float y() const { return e[1]; };
@@ -52,4 +58,11 @@ export class Vec3 {
         
     private:
         float e[3];
+
 };
+
+
+export std::ostream& operator<<(std::ostream& os, const Vec3& t);
+export  std::istream& operator>>(std::istream& is, Vec3& t);
+
+

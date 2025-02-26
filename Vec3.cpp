@@ -1,7 +1,9 @@
 module vecmath;
 
+
 using namespace std;
 
+/* Constructor */
 Vec3::Vec3() {
 }
 
@@ -11,6 +13,24 @@ Vec3::Vec3(float e0, float e1, float e2) {
     e[1] = e1;
     e[2] = e2;
 }
+
+
+/*stream*/
+inline istream& operator>>(istream& is, Vec3& t) {
+    float x, y, z;
+    is >> x >> y >> z;
+    t.x(x);
+    t.y(y);
+    t.z(z);
+
+    return is;
+}
+
+inline ostream& operator<<(ostream& os, const Vec3& t) {
+    os << t.x() << t.y() << t.z();
+    return os;
+}
+
 
 Vec3& Vec3::operator/=(const float t) {
     float k = 1.0f / t;

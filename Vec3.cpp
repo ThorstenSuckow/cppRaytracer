@@ -31,6 +31,12 @@ inline ostream& operator<<(ostream& os, const Vec3& t) {
     return os;
 }
 
+void Vec3::makeUnitVector() {
+    float len = 1 / length();
+    e[0] *= len;
+    e[1] *= len;
+    e[2] *= len;
+}
 
 Vec3& Vec3::operator/=(const float t) {
     float k = 1.0f / t;

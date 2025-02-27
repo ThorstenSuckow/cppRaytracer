@@ -36,6 +36,9 @@ int main() {
     v1 *= 3.0f;
 
     cout << "Vector: " << v1 << endl;
+    v1.makeUnitVector();
+    cout << "Vector: " << v1 << endl;
+
 
     IOUtil::putContents("demo.ppm", buffer.str());
 

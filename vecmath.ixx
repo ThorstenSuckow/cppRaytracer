@@ -48,12 +48,7 @@ export class Vec3 {
             return e[0] * e[0] + e[1] * e[1] + e[2] * e[2];
         }
 
-        inline void makeUnitVector() {
-            float len = 1/length();
-            e[0] *= len;
-            e[1] *= len;
-            e[2] *= len;
-        }
+        void makeUnitVector();
 
         
     private:

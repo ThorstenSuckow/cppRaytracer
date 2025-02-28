@@ -38,6 +38,8 @@ int main() {
     cout << "Vector: " << v1 << endl;
     v1.makeUnitVector();
     cout << "Vector: " << v1 << endl;
+    Vec3 v4 = v1 * v1;
+    cout << "Vector: " << v4 << endl;
 
 
     IOUtil::putContents("demo.ppm", buffer.str());

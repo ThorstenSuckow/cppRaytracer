@@ -58,6 +58,12 @@ export class Vec3 {
 
 
 export std::ostream& operator<<(std::ostream& os, const Vec3& t);
-export  std::istream& operator>>(std::istream& is, Vec3& t);
+export std::istream& operator>>(std::istream& is, Vec3& t);
+
+export Vec3 operator+(const Vec3& v1, const Vec3& v2);
+export Vec3 operator-(const Vec3& v1, const Vec3& v2);
+export Vec3 operator*(const Vec3& v1, const Vec3& v2);
+export Vec3 operator/(const Vec3& v1, const Vec3& v2);
+
 
 

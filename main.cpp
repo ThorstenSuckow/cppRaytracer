@@ -40,6 +40,15 @@ int main() {
     cout << "Vector: " << v1 << endl;
     Vec3 v4 = v1 * v1;
     cout << "Vector: " << v4 << endl;
+    
+    Vec3 v5 = Vec3(1, 1, 1);
+    
+    v5 = 3.0f * v5;
+    cout << "Vector: " << v5 << endl;
+
+    v5 = v5 / 3.0f;
+    cout << "Vector: " << v5 << endl;
+
 
 
     IOUtil::putContents("demo.ppm", buffer.str());

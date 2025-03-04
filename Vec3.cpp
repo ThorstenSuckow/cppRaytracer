@@ -60,6 +60,9 @@ inline Vec3 operator*(float t, const Vec3& v) {
     return Vec3(t * v.x(), t * v.y(), t * v.z());
 }
 
+inline Vec3 operator/(const Vec3& v, const float t) {
+    return Vec3(v.x() / t, v.y() / t, v.z() / t);
+}
 
 Vec3& Vec3::operator/=(const float t) {
     float k = 1.0f / t;
@@ -110,11 +113,6 @@ Vec3& Vec3::operator+=(const Vec3& v2) {
 
     return *this;
 }
-
-Vec3 operator/(const Vec3& v1, const float t) {
-    return Vec3(v1.x() / t, v1.y() / t, v1.z() / t);
-
-};
 
 
 Vec3 Vec3::unitVector(const Vec3& v2) {

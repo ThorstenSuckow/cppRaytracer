@@ -69,4 +69,6 @@ export Vec3 operator*(const float t, const Vec3& v);
 export Vec3 operator*(const Vec3& v1, const Vec3& v2);
 export Vec3 operator*(const Vec3& v, const float t);
 
-export float dot(const Vec3& v1, const Vec3& v2);
+export float dot(const Vec3 &v1, const Vec3& v2);
+
+export Vec3 cross(const Vec3& v1, const Vec3& v2);

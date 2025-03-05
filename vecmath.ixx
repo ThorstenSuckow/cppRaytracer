@@ -62,9 +62,12 @@ export std::istream& operator>>(std::istream& is, Vec3& t);
 
 export Vec3 operator+(const Vec3& v1, const Vec3& v2);
 export Vec3 operator-(const Vec3& v1, const Vec3& v2);
-export Vec3 operator*(const Vec3& v1, const Vec3& v2);
+
 export Vec3 operator/(const Vec3& v1, const Vec3& v2);
-export Vec3 operator*(float t, const Vec3& v);
 export Vec3 operator/(const Vec3& v, const float t);
+
+export Vec3 operator*(const float t, const Vec3& v);
+export Vec3 operator*(const Vec3& v1, const Vec3& v2);
+export Vec3 operator*(const Vec3& v, const float t);
 
 

@@ -12,8 +12,7 @@ export class Vec3 {
         Vec3(float e0, float e1, float e2);
 
         static Vec3 unitVector(const Vec3& v2);
-        
-      
+       
         inline void x(float x) { e[0] = x; };
         inline void y(float y) { e[1] = y; };
         inline void z(float z) { e[2] = z; };
@@ -70,4 +69,4 @@ export Vec3 operator*(const float t, const Vec3& v);
 export Vec3 operator*(const Vec3& v1, const Vec3& v2);
 export Vec3 operator*(const Vec3& v, const float t);
 
-
+export float dot(const Vec3& v1, const Vec3& v2);

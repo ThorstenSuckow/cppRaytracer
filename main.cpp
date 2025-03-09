@@ -3,8 +3,16 @@
 
 import IOUtil;
 import vecmath;
+import ray;
+
 
 using namespace std;
+
+Vec3 color(const Ray &r) {
+    Vec3 unitDirection = Vec3::unitVector(r.direction());
+    float t = 0.5 * (unitDirection.y() + 1.0f);
+    return (1.0 - t) * Vec3(1.0f, 1.0f, 1.0f) + t * Vec3(0.5f, 0.7f, 1.0f);
+}
 
 int main() {
 
@@ -15,42 +23,34 @@ int main() {
 
     buffer << "P3" << endl << nx << " " << ny << endl << 255 << endl;
 
+    Vec3 lowerLeftCorner(-2.0f, -1.0f, -1.0f);
+    Vec3 horizontal(8.0f, 0.0f, 0.0f);
+    Vec3 vertical(0.0f, 2.0f, 0.0f);
+    Vec3 origin(0.0f, 0.0f, 0.0f);
+
     for (int j = ny - 1; j >= 0; j--) {
         for (int i = 0; i < nx; i++) {
 
-            float r = float(i) / float(nx);
-            float g = float(j) / float(ny);
-            float b = 0.2;
-            int ir = int(255.99 * r);
-            int ig = int(255.99 * g);
-            int ib = int(255.99 * b);
+            float u = float(i) / float(nx);
+            float v = float(j) / float(ny);
+            
+
+            Ray r(origin, lowerLeftCorner + u * horizontal + v * vertical);
+
+            Vec3 col = color(r);
+
+
+            int ir = int(255.99 * col[0]);
+            int ig = int(255.99 * col[1]);
+            int ib = int(255.99 * col[2]);
 
             buffer << ir << " " << ig << " " << ib << endl;
 
         }
-
     }
 
-
-    Vec3 v1 = Vec3(3, 3, 3);
-    v1 *= 3.0f;
-
-    cout << "Vector: " << v1 << endl;
-    v1.makeUnitVector();
-    cout << "Vector: " << v1 << endl;
-    Vec3 v4 = v1 * v1;
-    cout << "Vector: " << v4 << endl;
     
-    Vec3 v5 = Vec3(1, 1, 1);
-    
-    v5 = 3.0f * v5;
-    cout << "Vector: " << v5 << endl;
-
-    v5 = v5 / 3.0f;
-    cout << "Vector: " << v5 << endl;
-
-
-
+    cout << buffer.str();
     IOUtil::putContents("demo.ppm", buffer.str());
 
 }

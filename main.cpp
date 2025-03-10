@@ -50,7 +50,7 @@ int main() {
     }
 
     
-    cout << buffer.str();
+    //cout << buffer.str();
     IOUtil::putContents("demo.ppm", buffer.str());
 
 }

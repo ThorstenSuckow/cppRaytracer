@@ -26,8 +26,8 @@ Vec3 color(const Ray &r) {
     }
 
     Vec3 unitDirection = Vec3::unitVector(r.direction());
-    float t = 0.5 * (unitDirection.y() + 1.0f);
-    return (1.0 - t) * Vec3(1.0f, 1.0f, 1.0f) + t * Vec3(0.5f, 0.7f, 1.0f);
+    float t = 0.5f * (unitDirection.y() + 1.0f);
+    return (1.0f - t) * Vec3(1.0f, 1.0f, 1.0f) + t * Vec3(0.5f, 0.7f, 1.0f);
 }
 
 int main() {

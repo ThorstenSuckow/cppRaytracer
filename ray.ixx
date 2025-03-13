@@ -16,7 +16,7 @@ export class Ray {
 
         inline Vec3 origin() const { return A;}
         inline Vec3 direction() const { return B; }
-        inline Vec3 point_at_parameter(const float t) {
+        inline Vec3 pointAtParameter(const float t) const {
             return A + t * B;
         }
 

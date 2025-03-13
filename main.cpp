@@ -8,25 +8,35 @@ import ray;
 
 using namespace std;
 
-bool hitSphere(const Vec3& center, float radius, const Ray& r) {
+float hitSphere(const Vec3& center, float radius, const Ray& r) {
 
     Vec3 oc = r.origin() - center;
     float a = dot(r.direction(), r.direction());
     float b = 2.0f * dot(oc, r.direction());
     float c = dot(oc, oc) - radius * radius;
     float discriminant = b * b - 4 * a * c;
-    return (discriminant > 0);
 
+    if (discriminant < 0) {
+        return -1.0f;
+    }
+    else {
+        return (- b - sqrt(discriminant) ) / (2.0f * a);
+    }
 }
 
 Vec3 color(const Ray &r) {
     
-    if (hitSphere(Vec3(0, 0,-1), 0.5, r)) {
-        return Vec3(1, 0, 0);
+    float t = hitSphere(Vec3(0, 0, -1), 0.5, r);
+
+    if (t > 0.0f) {
+        Vec3 N = Vec3::unitVector(
+            r.pointAtParameter(t) - Vec3(0.0f, 0.0f, -1.0f)
+        );
+        return 0.5f * Vec3(N.x() + 1.0f, N.y() + 1.0f, N.z() + 1.0f);
     }
 
     Vec3 unitDirection = Vec3::unitVector(r.direction());
-    float t = 0.5f * (unitDirection.y() + 1.0f);
+    t = 0.5f * (unitDirection.y() + 1.0f);
     return (1.0f - t) * Vec3(1.0f, 1.0f, 1.0f) + t * Vec3(0.5f, 0.7f, 1.0f);
 }
 

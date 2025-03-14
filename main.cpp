@@ -19,9 +19,8 @@ float hitSphere(const Vec3& center, float radius, const Ray& r) {
     if (discriminant < 0) {
         return -1.0f;
     }
-    else {
-        return (- b - sqrt(discriminant) ) / (2.0f * a);
-    }
+
+    return ( -b - sqrt(discriminant) ) / (2.0f * a);
 }
 
 Vec3 color(const Ray &r) {

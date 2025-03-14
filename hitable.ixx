@@ -14,5 +14,5 @@ export struct hitRecord {
 export class Hitable {
 
     public:
-        virtual bool hit(const Ray& r, float t_min, float t_max, hitRecord& rec) const = 0;
+        virtual bool hit(const Ray& r, float tmin, float tmax, hitRecord& rec) const = 0;
 };

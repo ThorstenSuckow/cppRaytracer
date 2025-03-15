@@ -1,18 +1,24 @@
+module;
+
+#include <math.h>
+
 import vecmath;
 import hitable;
 import ray;
 
+export module sphere;
+
 export class Sphere : public Hitable {
 
-    public:
-        Sphere() {};
+public:
+    Sphere() {};
 
-        Sphere(Vec3 cen, float r) : center(cen), radius(r) {};
+    Sphere(Vec3 cen, float r) : center(cen), radius(r) {};
 
-        virtual bool hit(const Ray& r, float tmin, float tmax, hitRecord& rec) const;
+    virtual bool hit(const Ray& r, float tmin, float tmax, hitRecord& rec) const;
 
-        Vec3 center;
-        float radius;
+    Vec3 center;
+    float radius;
 
 };
 
@@ -21,7 +27,7 @@ bool Sphere::hit(const Ray& r, float tmin, float tmax, hitRecord& rec) const {
     Vec3 oc = r.origin() - center;
     float a = dot(r.direction(), r.direction());
     float b = /* 2* */dot(oc, r.direction());
-    float c = dot(oc, oc) - radius*radius;
+    float c = dot(oc, oc) - radius * radius;
 
     float discriminant = b * b - /* 4* */ a * c;
 
@@ -46,6 +52,6 @@ bool Sphere::hit(const Ray& r, float tmin, float tmax, hitRecord& rec) const {
     }
 
     return false;
-    
+
 
 }

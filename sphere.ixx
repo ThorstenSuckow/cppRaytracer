@@ -2,11 +2,12 @@ module;
 
 #include <math.h>
 
+export module sphere;
+
 import vecmath;
 import hitable;
 import ray;
 
-export module sphere;
 
 export class Sphere : public Hitable {
 
@@ -34,7 +35,7 @@ bool Sphere::hit(const Ray& r, float tmin, float tmax, hitRecord& rec) const {
     if (discriminant > 0.0f) {
         // discriminant > 0 and temp w/in interval: 
         // closer to ray origin
-        float temp = (-b - sqrt(discriminant)) / a;
+        float temp{ static_cast<float>(-b - sqrt(discriminant)) / a };
 
         if (temp < tmax && temp > tmin) {
             rec.t = temp;
@@ -42,7 +43,7 @@ bool Sphere::hit(const Ray& r, float tmin, float tmax, hitRecord& rec) const {
             rec.normal = (rec.p - center) / radius;
             return true;
         }
-        temp = (-b + sqrt(discriminant)) / a;
+        temp = static_cast<float>(-b + sqrt(discriminant)) / a ;
         if (temp < tmax && temp > tmin) {
             rec.t = temp;
             rec.p = r.pointAtParameter(rec.t);

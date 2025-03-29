@@ -6,9 +6,17 @@ import vecmath;
 import ray;
 import sphere;
 import hitable;
+import camera;
 
 using namespace std;
 
+void init_srand() {
+    srand(time(0));
+}
+
+float random_f() {
+    return static_cast<float>(rand()) / (RAND_MAX - 1);
+}
 
 Vec3 color(const Ray &r, Hitable *world) {
     
@@ -30,17 +38,15 @@ Vec3 color(const Ray &r, Hitable *world) {
 
 int main() {
 
+    init_srand();
+
     int nx = 200;
     int ny = 100;
+    int ns = 100;
 
     stringstream buffer;
 
     buffer << "P3" << endl << nx << " " << ny << endl << 255 << endl;
-
-    Vec3 lowerLeftCorner(-2.0f, -1.0f, -1.0f);
-    Vec3 horizontal(4.0f, 0.0f, 0.0f);
-    Vec3 vertical(0.0f, 2.0f, 0.0f);
-    Vec3 origin(0.0f, 0.0f, 0.0f);
 
     Hitable* list[2];
     list[0] = new Sphere(Vec3(0.0f, 0.0f, -1.0f), 0.5f);
@@ -48,15 +54,22 @@ int main() {
 
     Hitable* world = new HitableList(list, 2);
 
+    Camera cam;
+
     for (int j = ny - 1; j >= 0; j--) {
         for (int i = 0; i < nx; i++) {
-
-            float u = float(i) / float(nx);
-            float v = float(j) / float(ny);
-
-            Ray r(origin, lowerLeftCorner + u * horizontal + v * vertical);
-
-            Vec3 col = color(r, world);
+            
+            Vec3 col(0, 0, 0);
+            
+            for (int s = 0; s < ns; s++) {
+                float u = float(i + random_f()) / float(nx);
+                float v = float(j + random_f()) / float(ny);
+                Ray r = cam.getRay(u, v);
+                Vec3 p = r.pointAtParameter(2.0);
+                col += color(r, world);
+            }
+            col /= static_cast<float>(ns);
+    
 
             int ir = int(255.99 * col[0]);
             int ig = int(255.99 * col[1]);

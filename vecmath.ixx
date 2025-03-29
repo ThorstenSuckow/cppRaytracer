@@ -31,7 +31,7 @@ export class Vec3 {
         inline float& operator[](int i) { return e[i]; };
 
         
-        inline Vec3& operator+=(const Vec3& v2);
+        Vec3& operator+=(const Vec3& v2);
         inline Vec3& operator-=(const Vec3& v2);
         inline Vec3& operator*=(const Vec3& v2);
         inline Vec3& operator/=(const Vec3& v2);

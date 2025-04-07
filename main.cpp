@@ -37,7 +37,7 @@ Vec3 color(const Ray &r, Hitable *world) {
     hitRecord rec;
     const float maxFloat = numeric_limits<float>::max();
 
-    if (world->hit(r, 0.0f, maxFloat, rec)) {
+    if (world->hit(r, 0.001f, maxFloat, rec)) {
         Vec3 target = rec.p + rec.normal + randomInUnitSphere();
         return 0.5f * color(Ray(rec.p, target - rec.p), world);
     }
@@ -82,7 +82,8 @@ int main() {
                 col += color(r, world);
             }
             col /= static_cast<float>(ns);
-    
+            col = Vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
+
             int ir = int(255.99 * col[0]);
             int ig = int(255.99 * col[1]);
             int ib = int(255.99 * col[2]);
